@@ -8,9 +8,9 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-
 app.use(morgan('common'));
 app.use(express.static('public'));
+app.use(express.json());
 
 app.set('view engine', 'pug');
 
@@ -25,6 +25,16 @@ app.get('/prompter', (req, res) => {
 app.get('/text', (req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end(fs.readFileSync( __dirname + '/public/prompter.txt' ));
+});
+
+app.post('/savetext', (req, res) => {
+    if (!req.body.text) {
+        res.end('no body');
+        return;
+    }
+
+    fs.writeFileSync(__dirname + '/public/prompter.txt', req.body.text);
+    res.end('done');
 });
 
 app.use((req, res) => res.redirect('/prompter')); // handle 404 with flair lol

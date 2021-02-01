@@ -14,5 +14,26 @@ function startPrompter() {
 }
 
 function stopPrompter() {
-    socket.emit('request-prompterstop');
+    socket.emit('request-prompterend');
 }
+
+function loadText() {
+    (async () => {
+        $('#text').val(await $.ajax({
+            method: 'GET',
+            url: '/text'
+        }));
+    })();
+}
+
+function saveText() {
+    $.ajax({
+        method: 'POST',
+        url: '/savetext',
+        data: {
+            text: $('#text').val()
+        }
+    });
+}
+
+$(loadText);

@@ -1,7 +1,8 @@
 // uses jQuery (cdnjs.com)
 // uses socket.io (/socket.io/socket.io.js)
 
-$('html').addClass('has-background-black');
+$('html').addClass('has-background-black')
+
 let play = false;
 let lineNo = 0;
 
@@ -23,22 +24,11 @@ socket.on('perform-updatetext', ({ content }) => {
     $('#text').html(sanitizeMeBro(content));
 });
 
-socket.on('update-text', text => {
-    data = data.replace(/<script>/, 'script');
-    data = data.replace(/=/gi, ' equals ');
-    data = data.replace(/\(/gi, '[');
-    data = data.replace(/\)/gi, ']');
-    data = data.replace(/;/gi, '.');
-    data = data.replace(/(\r\n|\r|\n)/gi, '<br />');
-
-    $('#text').html(data);
-})
-
 socket.on('perform-prompterstart', _ => {
     setPlay(true);
 });
 
-socket.on('perform-prompterstop', _ => {
+socket.on('perform-prompterend', _ => {
     setPlay(false);
 })
 
