@@ -1,0 +1,21 @@
+# @erwijet/WebPrompter GitIgnore
+#
+#
+#
+#
+# IGNORE node_modules
+node_modules/
+#
+#
+#
+# IGNORE yarn-error.log
+yarn-error.log
+#
+#
+#
+# IGNORE yarn.lock
+yarn.lock
+#
+#
+#
+#

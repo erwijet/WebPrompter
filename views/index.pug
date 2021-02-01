@@ -1,0 +1,28 @@
+extends layout
+
+block head
+    style.
+        html, body {
+            height: 100%
+        }
+
+        #text {
+            font-family: monospace
+        }
+
+block body
+    .hero.is-dark
+        .hero-body
+            .columns
+                .column.is-half
+                    p.title Teleprompter Editor
+                .column
+                    .buttons(style='float: right')
+                        .button Start Prompter
+                        .button Stop Prompter
+
+                        a.button#prompterBtn(href='/prompter') Go To Prompter
+                        .button.is-success#saveBtn(href='/prompter') Save
+    .box(style='margin: 2%; height: 70%')
+        textarea.textarea#text(style='height: 100%; width: 100%' type='textarea' oninput='textDidChange()')
+    script(src='/js/index.js')

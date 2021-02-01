@@ -1,0 +1,16 @@
+extends layout
+
+block head
+    title Prompter
+    style.
+        /* hide scrollbar */
+
+        ::-webkit-scrollbar {
+            display: none
+        }
+
+block body
+    .box.has-background-black(style='margin: 2%')
+        p.title.has-text-white#text(style='display: table; margin: auto;') Hello, World!
+    
+    script(src='/js/prompter.js')
